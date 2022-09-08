@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% for ride in ride_list %}
+    <div class="border border-dark" style="padding: 50px;">
+        <p>{{ride.Source_Address}} - {{ride.Dest_Address}}<p>
+        <p>{{ride.date}}</p>
+        <p>{{ride.time}}</p>
+        <form action="{% url 'optIn' ride.RideID %}">
+            <button type="submit" class="btn btn-outline-secondary" class="request">Request</button>
+        </form>
+        <form action="{% url 'optOut' ride.RideID %}">
+            <button type="submit" class="btn btn-outline-secondary" class="optout">Opt Out</button>
+        </form>
+    </div>
+{% endfor %}
+{% endblock %}

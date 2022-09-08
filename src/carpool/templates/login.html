@@ -1,0 +1,10 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<form method="post" action="">
+{% csrf_token %}
+{{form}}
+<button type="submit" class="btn btn-outline-secondary">submit</button>
+</form>
+<p>Don't have an account?</p><a href="{% url 'signup' %}" class="btn btn-outline-primary">Sign-Up</a>
+{% endblock %}

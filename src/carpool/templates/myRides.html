@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for ride in allRides %}
+<div class="border border-dark" style="padding: 50px;">
+    <p>{{ride.Source_Address}} - {{ride.Dest_Address}}<p>
+    <p>{{ride.date}}</p>
+    <p>{{ride.time}}</p>
+</div>
+{% endfor %}
+{% endblock %}

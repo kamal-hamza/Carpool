@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for ride in approvedRides %}
+        <div>
+            <h1>{{ride.Source_Address}}  - {{ride.Dest_Address}}</h1>
+            <h1>{{ride.date}}</h1>
+            <h1>{{ride.time}}</h1>
+        </div>
+    {% endfor %}
+{% endblock %}
