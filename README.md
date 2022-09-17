@@ -10,7 +10,7 @@ This web app is like Uber and can be used for carpooling, featues include: login
 ![Sign-Up](images/signup.PNG)
 
 ## Home
-![Home](images/home.PNG)
+![Home](images/home.png)
 
 ## All Rides
 ![All-Rides](images/allRides.PNG)
