@@ -21,6 +21,9 @@ This web app is like Uber and can be used for carpooling, featues include: login
 ## Create Ride
 ![Create-Ride](images/createRide.PNG)
 
+## Update Ride
+![Update-Ride](images/updateRide.png)
+
 ## Ride Requests
 ![Ride-Requests](images/rideRequests.PNG)
 
