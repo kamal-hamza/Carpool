@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import loginForm, create_rideForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .models import Ride, Request
@@ -36,9 +36,10 @@ def signup_user(request):
         context = {'form' : UserCreationForm()}
         return render(request, 'signup.html', context)
 
-def allRides(request):  
+def allRides(request):
+    current_user = request.user.username  
     ride_list = Ride.objects.all()
-    context = {'ride_list' : ride_list}
+    context = {'ride_list' : ride_list, 'current_user' : current_user}
     return render(request, 'allRides.html', context)
 
 
@@ -74,6 +75,11 @@ def optIn(request, rideID):
         requestRide = Request.objects.get_or_create(RideID = rideID, UserName = current_user)
         messages.success(request, ("Ride Request Successfully"))
         return redirect("allRides")
+
+def optOut(request, rideID):
+    current_user = request.user.username
+    Request.objects.get(RideID = rideID, UserName = current_user).delete()
+    return redirect("allRides")
 
 def deleteRide(request, rideID):
         Ride.objects.filter(RideID = rideID).delete()
@@ -120,17 +126,20 @@ def approvedRides(request):
     context = {'approvedRides' : approvedRides}
     return render(request, 'approvedRides.html', context)
 
+def pendingRides(request):
+    current_user = request.user.username
+    pendingRides = []
+    rides = Request.objects.filter(UserName = current_user, Approved = False)
+    for ride in rides:
+        id = ride.RideID
+        pendingRides.append(Ride.objects.get(RideID = id))
+    context = {'pendingRides' : pendingRides}
+    return render(request, 'pendingRides.html', context)
+
 def home(request):
     return render(request, 'home.html')
 
-def optOut(request, rideID):
-    current_user = request.user.username
-    ride = Ride.objects.get(RideID = rideID)
-    if current_user == ride.UserName:
-        messages.success(request, "Cannot Opt Out of your own ride")
-        return redirect("allRides")
-    Request.objects.get(RideID = rideID, UserName = current_user).delete()
-    return redirect("allRides")
-
-def logout(request):
+def logout_user(request):
+    logout(request)
+    messages.success(request, ("Successfully logged out"))
     return redirect("login")

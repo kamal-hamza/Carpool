@@ -16,5 +16,6 @@ urlpatterns = [
     path('approvedrides/', views.approvedRides, name = "approvedRides"),
     path('optout/<rideID>', views.optOut, name = "optOut"),
     path('', views.home, name = "home"),
-    path('logout/', views.logout, name = "logout"),
+    path('logout/', views.logout_user, name = "logout"),
+    path('pending', views.pendingRides, name = "pendingRides"),
 ]

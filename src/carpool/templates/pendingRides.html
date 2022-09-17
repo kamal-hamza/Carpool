@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for ride in approvedRides %}
+    {% for ride in pendingRides %}
         <div class="border border-dark" style="padding: 50px;">
             <p>{{ride.Source_Address}}  - {{ride.Dest_Address}}</p>
             <p>{{ride.date}}</p>
             <p>{{ride.time}}</p>
-            <h2>Approved</h2>
+            <h2>Pending</h2>
         </div>
     {% endfor %}
 {% endblock %}

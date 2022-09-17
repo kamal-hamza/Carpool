@@ -9,5 +9,6 @@
     <a href="{% url 'delete' ride.RideID %}" class="btn btn-outline-secondary">Delete</a>
     <a href="{% url 'updateform' ride.RideID %}" class="btn btn-outline-secondary">Update</a>
     <a href="{% url 'requestRide' ride.RideID %}" class="btn btn-outline-secondary">View Requests</a>
-{% endfor %}
+</div>
+    {% endfor %}
 {% endblock %}

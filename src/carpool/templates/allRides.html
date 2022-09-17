@@ -4,15 +4,13 @@
 {% block content %}
 {% for ride in ride_list %}
     <div class="border border-dark" style="padding: 50px;">
-        <p>{{ride.Source_Address}} - {{ride.Dest_Address}}<p>
+        <p>{{ride.Source_Address}} - {{ride.Dest_Address}}</p>
         <p>{{ride.date}}</p>
         <p>{{ride.time}}</p>
-        <form action="{% url 'optIn' ride.RideID %}">
-            <button type="submit" class="btn btn-outline-secondary" class="request">Request</button>
-        </form>
-        <form action="{% url 'optOut' ride.RideID %}">
-            <button type="submit" class="btn btn-outline-secondary" class="optout">Opt Out</button>
-        </form>
+        {% if current_user != ride.UserName %}
+            <a href="{% url 'optIn' ride.RideID %}" class="btn btn-outline-secondary" class="request">Request</a>
+            <a href="{% url 'optOut' ride.RideID %}" class="btn btn-outline-secondary" class="optout">Opt Out</a>
+        {% endif %}
     </div>
 {% endfor %}
 {% endblock %}
