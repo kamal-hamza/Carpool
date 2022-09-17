@@ -28,5 +28,5 @@ This web app is like Uber and can be used for carpooling, featues include: login
 ![Approved-Ride](images/approvedRides.PNG)
 
 ## Pending Ride
-![Pending-Ride](images/pendingRide.PNG)
+![Pending-Ride](images/pendingRides.PNG)
 
