@@ -6,6 +6,8 @@
     <p>{{ride.Source_Address}} - {{ride.Dest_Address}}<p>
     <p>{{ride.date}}</p>
     <p>{{ride.time}}</p>
-</div>
+    <a href="{% url 'delete' ride.RideID %}" class="btn btn-outline-secondary">Delete</a>
+    <a href="{% url 'updateform' ride.RideID %}" class="btn btn-outline-secondary">Update</a>
+    <a href="{% url 'requestRide' ride.RideID %}" class="btn btn-outline-secondary">View Requests</a>
 {% endfor %}
 {% endblock %}
