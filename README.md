@@ -6,30 +6,34 @@ This web app is like Uber and can be used for carpooling, featues include: login
 ## Login:
 ![Login](images/login.PNG)
 
-## Sign-Up
+## Sign-Up:
 ![Sign-Up](images/signup.PNG)
 
-## Home
+## Home:
 ![Home](images/home.png)
 
-## All Rides
+## All Rides:
 ![All-Rides](images/allRides.PNG)
 
-## My Rides
+## My Rides:
 ![My-Rides](images/myRides.PNG)
 
-## Create Ride
+## Create Ride:
 ![Create-Ride](images/createRide.PNG)
 
-## Update Ride
+## Update Ride:
 ![Update-Ride](images/updateRide.png)
 
-## Ride Requests
+## Ride Requests:
 ![Ride-Requests](images/rideRequests.PNG)
 
-## Approved Ride
+## Approved Ride:
 ![Approved-Ride](images/approvedRides.PNG)
 
-## Pending Ride
+## Pending Ride:
 ![Pending-Ride](images/pendingRides.PNG)
 
+## Technologies used:
+Django - 4.1.1.0
+Python - 3.10.7
+HTML - HTML5
