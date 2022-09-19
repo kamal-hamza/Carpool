@@ -83,6 +83,7 @@ def optOut(request, rideID):
 
 def deleteRide(request, rideID):
         Ride.objects.filter(RideID = rideID).delete()
+        Request.objects.filter(RideID = rideID).delete()
         return redirect("allRides")
 
 def updateForm(request, rideID):
