@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from .forms import loginForm, create_rideForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .models import Ride, Request
 import folium
-import geocoder
+from geopy.geocoders import Nominatim
+import openrouteservice as ors
 # Create your views here.
 
 def login_user(request):
@@ -46,8 +47,6 @@ def allRides(request):
 
 
 def create_ride(request):
-    map = folium.Map()
-    map = map._repr_html_()
     current_user = request.user.username
     if request.method == "POST":
         form = create_rideForm(request.POST)
@@ -148,3 +147,32 @@ def logout_user(request):
     logout(request)
     messages.success(request, ("Successfully logged out"))
     return redirect("login")
+
+def viewMap(request, rideID):
+    map = folium.Map()
+    ride = Ride.objects.get(RideID = rideID)
+    sourceDest = ride.Source_Address
+    destination = ride.Dest_Address
+    sourceLoc = Nominatim(user_agent="getSourceLoc")
+    destLoc = Nominatim(user_agent="getDestLoc")
+    getSourceLoc = sourceLoc.geocode(sourceDest)
+    getDestLoc = destLoc.geocode(destination)
+    destLat = getDestLoc.latitude
+    destLong = getDestLoc.longitude
+    sourceLat = getSourceLoc.latitude
+    sourceLong = getSourceLoc.longitude
+    destList = [destLat, destLong]
+    sourceList = [sourceLat, sourceLong]
+    map = folium.Map()
+    ors_key = '5b3ce3597851110001cf6248c1de9e7c306e4380aceb7860dff10d71'
+    client = ors.Client(key=ors_key)
+    coords = [[sourceLong, sourceLat], [destLong, destLat]]
+    route = client.directions(coordinates = coords, profile = 'driving-car', format = 'geojson')
+    folium.GeoJson(route, name='route').add_to(map)
+    folium.LayerControl().add_to(map)
+    folium.Marker(sourceList).add_to(map)
+    folium.Marker(destList).add_to(map)
+    map = map._repr_html_()
+    context = {'map' : map}
+    return render(request, 'map.html', context)
+

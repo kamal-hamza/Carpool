@@ -10,6 +10,7 @@
         {% if current_user != ride.UserName %}
             <a href="{% url 'optIn' ride.RideID %}" class="btn btn-outline-secondary" class="request">Request</a>
             <a href="{% url 'optOut' ride.RideID %}" class="btn btn-outline-secondary" class="optout">Opt Out</a>
+            <a href="{% url 'map' ride.RideID %}" class="btn btn-outline-secondary" class="optout">View Map</a>
         {% endif %}
     </div>
 {% endfor %}
