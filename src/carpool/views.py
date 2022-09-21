@@ -4,6 +4,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .models import Ride, Request
+import folium
+import geocoder
 # Create your views here.
 
 def login_user(request):
@@ -44,6 +46,8 @@ def allRides(request):
 
 
 def create_ride(request):
+    map = folium.Map()
+    map = map._repr_html_()
     current_user = request.user.username
     if request.method == "POST":
         form = create_rideForm(request.POST)
@@ -56,7 +60,7 @@ def create_ride(request):
             return redirect("create")
     else:
         form = create_rideForm(initial = {'UserName' : current_user})
-        context = {'create_rideForm' : form}
+        context = {'create_rideForm' : form, 'map' : map}
         return render(request, 'create.html', context)
 
 def myRide(request):
@@ -83,7 +87,7 @@ def optOut(request, rideID):
 
 def deleteRide(request, rideID):
         Ride.objects.filter(RideID = rideID).delete()
-        Request.objects.filter(RideID = rideID).delete()
+        Request.objects.filter(RideID = rideID).delete()  
         return redirect("allRides")
 
 def updateForm(request, rideID):
