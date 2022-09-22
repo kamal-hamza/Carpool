@@ -1,4 +1,121 @@
-a.disabled {
-    pointer-events: none;
-    cursor: default;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppin', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: #27282c;
+}
+
+a {
+    position: relative;
+    background: #27282c;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    padding: 10px 30px;
+    transition: 0.5s;
+    color: yellow;
+    text-shadow:  0 0 20px yellow;
+}
+
+a:hover {
+    background: var(--clr);
+    letter-spacing: 0.25em;
+    box-shadow: 0 0 35px #f57226;
+    background-color: #f57226;
+}
+
+.neon {
+    padding: 10px;
+    text-shadow:  0 0 20px #45f500;
+    color: #45f500;
+}
+
+.neon::after {
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    z-index: -1;
+    color: #45f500;
+    filter: blur(15px);
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin-bottom: 200px;
+    font-size: 25px;
+    margin-left: 135px;
+}
+
+.buttons {
+    float: right;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 200px;
+}
+
+p {
+    font-size: 25px;
+}
+
+.form-box {
+    top: 0;
+    height: 337.5px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+.form-box h2 {
+    text-align: center;
+    font-size: 30px;
+}
+    
+.form-field {
+    font-size: 25px;
+    border: none;
+    outline: none;
+    display: flex;
+    padding: 30px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 100%;
+    align-items: center;
+}
+
+#submit {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+#submitDiv {
+    width: 412px;
+    bottom: 0;
+    position: fixed;
+    margin-left: 38%;
+    margin-bottom: 10%;
+}
+
+#ptag {
+    text-align: center;
+}
+
+#signup {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
 }

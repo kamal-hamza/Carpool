@@ -1,10 +1,18 @@
 {% extends 'base2.html' %}
+{% load static %}
 
 {% block content %}
-<form method="post" action="">
-{% csrf_token %}
-{{form}}
-<button type="submit" class="btn btn-outline-secondary">submit</button>
-</form>
-<p>Don't have an account?</p><a href="{% url 'signup' %}" class="btn btn-outline-primary">Sign-Up</a>
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<div class="form-box">
+    <h2 class="neon">Login</h2>
+    <form method="post" action="" class="form-box">
+        {% csrf_token %}
+        {{form}}
+        <a type="submit" style="--clr:#1e9bff" id="submit">submit</a>
+    </form>
+</div>
+<div id="submitDiv">
+    <p class="neon" id="ptag">Don't have an account?</p>
+    <a href="{% url 'signup' %}" style="--clr:#1e9bff" id="signup">Sign-Up</a>
+</div>
 {% endblock %}

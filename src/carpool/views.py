@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from .forms import loginForm, create_rideForm
+from .forms import loginForm, create_rideForm, SignupForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
+#from django.contrib.auth.forms import UserCreationForm
 from .models import Ride, Request
 import folium
+from folium.plugins import MousePosition
 from geopy.geocoders import Nominatim
 import openrouteservice as ors
 # Create your views here.
@@ -27,7 +28,7 @@ def login_user(request):
 
 def signup_user(request):
     if request.method == 'POST':
-        form  = UserCreationForm(request.POST)
+        form  = SignupForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, ("Your account was created successfully"))
@@ -36,7 +37,7 @@ def signup_user(request):
             messages.success(request, ("There was an error validating your form"))
             return redirect("signup")
     else:
-        context = {'form' : UserCreationForm()}
+        context = {'form' : SignupForm()}
         return render(request, 'signup.html', context)
 
 def allRides(request):
@@ -150,6 +151,7 @@ def logout_user(request):
 
 def viewMap(request, rideID):
     map = folium.Map()
+    MousePosition().add_to(map)
     ride = Ride.objects.get(RideID = rideID)
     sourceDest = ride.Source_Address
     destination = ride.Dest_Address

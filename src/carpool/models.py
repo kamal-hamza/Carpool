@@ -5,7 +5,7 @@ class Ride(models.Model):
     RideID = models.AutoField(primary_key = True)
     Source_Address = models.CharField(max_length = 128)
     Dest_Address = models.CharField(max_length = 128)
-    NumberPlate = models.CharField(max_length = 128)
+    NumberPlate = models.CharField(max_length = 128)  
     date = models.DateField()
     time = models.TimeField()
     Occupancy = models.IntegerField()

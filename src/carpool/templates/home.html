@@ -1,7 +1,13 @@
 {% extends 'base2.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Welcome to the fake Uber Website</h1>
-    <a href="{% url 'signup' %}" class="btn btn-outline-primary">Sign-Up</a>
-    <a href="{% url 'login' %}" class="btn btn-outline-primary">Login</a>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <div class="title">
+        <h1 class="neon">Welcome to the fake Uber Website</h1>
+    </div>
+    <div class="buttons">
+        <a href="{% url 'signup' %}" style="--clr:#1e9bff"><span>Sign-Up</span></a>
+        <a href="{% url 'login' %}" style="--clr:#1e9bff"><span>Login</span></a>
+    </div>
 {% endblock %}
