@@ -2,12 +2,14 @@
 {% load static %}
 
 {% block content %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <div class="title">
-        <h1 class="neon">Welcome to the fake Uber Website</h1>
-    </div>
-    <div class="buttons">
-        <a href="{% url 'signup' %}" style="--clr:#1e9bff"><span>Sign-Up</span></a>
-        <a href="{% url 'login' %}" style="--clr:#1e9bff"><span>Login</span></a>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesBase2.css' %}">
+    <div class="outer">
+        <div class="inner1">
+            <h1 class="neon" id="title">Welcome to the Fake Uber Website</h1>
+        </div>
+        <div class="inner2">
+            <a class="button" href="{% url 'signup' %}">Sign-Up</a>
+            <a class="button" href="{% url 'login' %}">Login</a>
+        </div>
     </div>
 {% endblock %}

@@ -2,13 +2,17 @@
 
 {% block content %}
 {% for ride in allRides %}
-<div class="border border-dark" style="padding: 50px;">
-    <p>{{ride.Source_Address}} - {{ride.Dest_Address}}<p>
-    <p>{{ride.date}}</p>
-    <p>{{ride.time}}</p>
-    <a href="{% url 'delete' ride.RideID %}" class="btn btn-outline-secondary">Delete</a>
-    <a href="{% url 'updateform' ride.RideID %}" class="btn btn-outline-secondary">Update</a>
-    <a href="{% url 'requestRide' ride.RideID %}" class="btn btn-outline-secondary">View Requests</a>
+<div class="wrap">
+    <div class="ride">
+        <h2 class="neonText" >{{ride.Source_Address}} - {{ride.Dest_Address}}</h2>
+        <h2 class="neonText">{{ride.date}}</h2>
+        <div class="buttonDiv">
+            <a href="{% url 'delete' ride.RideID %}" class="button">Delete</a>
+            <a href="{% url 'updateform' ride.RideID %}" class="button">Update</a>
+            <a href="{% url 'requestRide' ride.RideID %}" class="button">View Requests</a>
+        </div>
+        <h2 class="neonText">{{ride.time}}</h2>
+    </div>
 </div>
     {% endfor %}
 {% endblock %}

@@ -2,16 +2,23 @@
 {% load static %}
 
 {% block content %}
-{% for ride in ride_list %}
-    <div class="border border-dark" style="padding: 50px;">
-        <p>{{ride.Source_Address}} - {{ride.Dest_Address}}</p>
-        <p>{{ride.date}}</p>
-        <p>{{ride.time}}</p>
-        {% if current_user != ride.UserName %}
-            <a href="{% url 'optIn' ride.RideID %}" class="btn btn-outline-secondary" class="request">Request</a>
-            <a href="{% url 'optOut' ride.RideID %}" class="btn btn-outline-secondary" class="optout">Opt Out</a>
-            <a href="{% url 'map' ride.RideID %}" class="btn btn-outline-secondary" class="optout">View Map</a>
-        {% endif %}
+<link rel="stylesheet" href="{% static 'css\stylesBase1.css' %}">
+<div class="bottom">
+    {% for ride in ride_list %}
+    <div class="wrap">
+        <div class="ride">  
+            <h2 class="neonText" >{{ride.Source_Address}} - {{ride.Dest_Address}}</h2>
+            <h2 class="neonText">{{ride.date}}</h2>
+            {% if current_user != ride.UserName %}
+                <div class="buttonDiv">
+                    <a href="{% url 'optIn' ride.RideID %}" class="button">Request</a>
+                    <a href="{% url 'optOut' ride.RideID %}" class="button">Opt Out</a>
+                    <a href="{% url 'map' ride.RideID %}" class="button">View Map</a>
+                </div>
+            {% endif %}
+            <h2 class="neonText">{{ride.time}}</h2>
+        </div>
     </div>
-{% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}

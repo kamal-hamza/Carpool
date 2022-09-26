@@ -1,14 +1,14 @@
-requestButtons = document.getElementsByClassName('request')
-unrequestButtons = document.getElementsByClassName('unrequest')
-
-for (var i = 0; i < requestButtons.length; i++) {
-    requestButtons[i].addEventListener('click', function(){
-        console.log("called")
-        id = requestButtons[i].value
-        $.ajax({
-            method : "POST",
-            url : "allrides/",
-            data : id
-        });
-    });
+function submit() {
+    document.getElementById('formSub').submit()
 }
+
+navLinks = document.getElementsByClassName('navlink')
+
+function currentPage() {
+    for (var i = 0; i < navLinks.length; i++) {
+        if (window.location.href == navLinks[i].href) {
+            navLinks[i].class = "active";
+        }
+    }
+}
+

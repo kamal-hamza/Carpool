@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="bottom">
     {% for user in rideRequests %}
-        <div>
-            <h3>{{user.UserName}}</h3>
-            <a href="{% url 'approve' Username=user.UserName rideID=user.RideID %}" class="btn btn-outline-secondary">Approve</a>
-            <a href="{% url 'deny' Username=user.UserName rideID=user.RideID %}" class="btn btn-outline-secondary">Deny</a>
+    <div class="wrap">
+        <div class="ride">
+            <h1 class="neonText">{{user.UserName}}</h1>
+            <a href="{% url 'approve' Username=user.UserName rideID=user.RideID %}" class="button">Approve</a>
+            <a href="{% url 'deny' Username=user.UserName rideID=user.RideID %}" class="button">Deny</a>
         </div>
+    </div>
     {% endfor %}
+</div>
 {% endblock %}

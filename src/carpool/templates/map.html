@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-    <div>
+<link rel="stylesheet" href="{% static 'css\stylesBase1.css' %}"
+    <div class="mapDiv">
         {{map|safe}}
     </div>
 {% endblock %}

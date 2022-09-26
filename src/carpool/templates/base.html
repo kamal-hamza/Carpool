@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,50 +7,34 @@
     <title>Carpool</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Carpool</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'allRides' %}">All Rides</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'myRides' %}">My Rides</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'create' %}">Create Ride</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'approvedRides' %}">Approved Rides</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'pendingRides' %}">Pending Rides</a>
-            </li>
-            <li class="nav-item">
-              <p class="nav-link">{{user.username}}</p>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
-          </ul>
+    <link rel="stylesheet" href="{% static 'css\stylesBase1.css' %}">
+    <div class="main">
+      <div class="top">
+        <header>
+          <nav>
+            <ul class="nav__links">
+              <li><a href="{% url 'allRides' %}" {% if request.path == '/carpool/allrides/' %} class = "active" {% endif %}>All Rides</a></li>
+              <li><a href="{% url 'myRides' %}" {% if request.path == '/carpool/myrides/' %} class = "active" {% endif %}>My Rides</a></li>
+              <li><a href="{% url 'create' %}" {% if request.path == '/carpool/create/' %} class = "active" {% endif %}>Create Ride</a></li>
+              <li><a href="{% url 'approvedRides' %}" {% if request.path == '/carpool/approvedrides/' %} class = "active" {% endif %}>Appoved Rides</a></li>
+              <li><a href="{% url 'pendingRides' %}" {% if request.path == '/carpool/pending' %} class = "active" {% endif %}>Pending Rides</a></li>
+              <li><a>{{user.username}}</a></li>
+            </ul>
+          </nav>
+          <a class="cta" href="{% url 'logout' %}">Logout</a>
+        </header>
+      </div>
+      {% if messages %}
+        {% for message in messages %}
+        <div>
+          {{message}}  <button class="button">X</button>
         </div>
-      </div>
-    </nav>
+        {% endfor %}
+      {% endif %}
 
-    {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{message}}  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {% endfor %}
-    {% endif %}
+      {% block content %}
 
-    {% block content %}
-
-    {% endblock %}
+      {% endblock %}
+    </div>
   </body>
 </html>

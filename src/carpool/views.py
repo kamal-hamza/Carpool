@@ -1,8 +1,9 @@
+from doctest import IGNORE_EXCEPTION_DETAIL
 from django.shortcuts import render, redirect
 from .forms import loginForm, create_rideForm, SignupForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-#from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from .models import Ride, Request
 import folium
 from folium.plugins import MousePosition
@@ -42,7 +43,11 @@ def signup_user(request):
 
 def allRides(request):
     current_user = request.user.username  
-    ride_list = Ride.objects.all()
+    ride_list = []
+    rides = Ride.objects.filter()
+    for ride in rides:
+        if ride.Occupancy > 0:
+            ride_list.append(ride)
     context = {'ride_list' : ride_list, 'current_user' : current_user}
     return render(request, 'allRides.html', context)
 
@@ -87,7 +92,9 @@ def optOut(request, rideID):
 
 def deleteRide(request, rideID):
         Ride.objects.filter(RideID = rideID).delete()
-        Request.objects.filter(RideID = rideID).delete()  
+        request_Rides = Request.objects.filter(RideID = rideID) 
+        for ride in request_Rides:
+            ride.delete()
         return redirect("allRides")
 
 def updateForm(request, rideID):
@@ -150,7 +157,7 @@ def logout_user(request):
     return redirect("login")
 
 def viewMap(request, rideID):
-    map = folium.Map()
+    map = folium.Map(width=11, height=11, location=[12, 12], zoom_start=2)
     MousePosition().add_to(map)
     ride = Ride.objects.get(RideID = rideID)
     sourceDest = ride.Source_Address

@@ -2,15 +2,20 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-<div class="form-box">
-    <form method="post" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" style="--clr:#1e9bff" id="submit">submit</button>
-    </form>
-</div>
-<div>
-    Already a User? <a href="{% url 'login' %}" class="btn btn-outline-primary">Login</a>
+<link rel="stylesheet" type="text/css" href="{% static 'css/stylesBase2.css' %}">
+<script src="{% static 'js\app.js' %}"></script>
+<div class="outer">    
+    <div class="inner1">
+        <form method="post" action="" class="form-box" id="formSub">
+            <h1 class="neon" id="login">Sign-Up</h1>
+            {% csrf_token %}
+            {{form.as_p}}
+            <a onclick="submit()" class="button" id="submitButton">submit</a>
+        </form>
+    </div>
+    <div class="inner2">
+        <p class="neon" style="font-size: 30px;">Already a User?</p>
+        <a href="{% url 'login' %}" class="button">Login</a>
+    </div>
 </div>
 {% endblock %}  
