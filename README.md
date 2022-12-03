@@ -4,7 +4,7 @@ Carpool Website with Django
 This web app is like Uber and can be used for carpooling, featues include: login, logout, create-ride, approval and denial flow, delete and update ride.
 
 ## Login:
-![Login](images/Login.PNG)
+![Login](images/login.PNG)
 
 ## Sign-Up:
 ![Sign-Up](images/Sign-Up.PNG)
@@ -22,7 +22,7 @@ This web app is like Uber and can be used for carpooling, featues include: login
 ![Create-Ride](images/Create-Ride.PNG)
 
 ## Update Ride:
-![Update-Ride](images/Update-Ride.PNG)
+![Update-Ride](images/Update-Rides.PNG)
 
 ## Ride Requests:
 ![Ride-Requests](images/Ride-Requests.PNG)
